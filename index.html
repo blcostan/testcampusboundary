@@ -71,7 +71,7 @@
             </button>
         </div>
 
-        <div id="page-form" class="block">
+       <div id="page-form" class="block">
             <div class="p-4 md:p-8 grid grid-cols-1 lg:grid-cols-2 gap-10">
                 
                 <form id="treeForm" class="space-y-4" onsubmit="handleFormSubmission(event)">
@@ -178,7 +178,6 @@
                     <input type="hidden" name="H:Asset_Value" id="hidden_value">
                     <input type="hidden" name="M:Proximity_Note" id="hidden_proximity" value="Initial workspace data point entry.">
                     <input type="hidden" name="I:Created_At" id="timestamp">
-                    <input type="hidden" name="O:Campus_Status" id="campus_status" value="UNVERIFIED">
                 </form>
 
                 <div class="space-y-6">
@@ -250,7 +249,6 @@
                 </div>
             </div>
         </div>
-
         <div id="page-map" class="hidden min-h-[70vh] w-full p-2 bg-zinc-900">
             <iframe width="100%" height="700" src="https://datastudio.google.com/embed/reporting/26194913-cee7-423f-80e6-25a715c079bc/page/erJvF" frameborder="0" style="border:0; border-radius: 12px;" allowfullscreen></iframe>
         </div>
@@ -329,104 +327,6 @@
         // SHEETMONKEY PRODUCTION API GATEWAY ENDPOINT
         const GOOGLE_WEB_APP_URL = "https://api.sheetmonkey.io/form/336EJZmaN8Aa7rG5DSNAJG";
 
-        // COMPLETE NCSU CAMPUS POLYGONS DATASET FROM SPREADSHEET
-        const NCSU_POLYGONS = [
-            {
-                campus: "Central Campus", polygonId: "Polygon 1",
-                points: [[35.782836,-78.665516],[35.782093,-78.666024],[35.782028,-78.666024],[35.781911,-78.666859],[35.781815,-78.667667],[35.781963,-78.668171],[35.781455,-78.668334],[35.781028,-78.668361],[35.780997,-78.668016],[35.781154,-78.667496],[35.780443,-78.667234],[35.780006,-78.667306],[35.779597,-78.668364],[35.779851,-78.67143],[35.780836,-78.675159],[35.78155,-78.676828],[35.782436,-78.678854],[35.784802,-78.684415],[35.78499,-78.684934],[35.785218,-78.686952],[35.787009,-78.686956],[35.787932,-78.686876],[35.788304,-78.686725],[35.788732,-78.68636],[35.788938,-78.686197],[35.789021,-78.685879],[35.789267,-78.685913],[35.789655,-78.685594],[35.789507,-78.685245],[35.790716,-78.684824],[35.790138,-78.683819],[35.789593,-78.682916],[35.789095,-78.681949],[35.788267,-78.680037],[35.787398,-78.677655],[35.786524,-78.675401],[35.786225,-78.674575],[35.785807,-78.673452],[35.785484,-78.67256],[35.78457,-78.670026],[35.783831,-78.668092],[35.782822,-78.665501]]
-            },
-            {
-                campus: "Central Campus", polygonId: "Polygon 2",
-                points: [[35.78894,-78.686312],[35.788131,-78.686902],[35.787034,-78.686999],[35.787021,-78.69395],[35.787049,-78.693987],[35.787073,-78.697292],[35.789249,-78.69663],[35.789225,-78.693862],[35.789096,-78.689346],[35.788943,-78.686428]]
-            },
-            {
-                campus: "South Campus", polygonId: "Polygon 1",
-                points: [[35.784852,-78.686869],[35.779391,-78.687105],[35.779259,-78.68472],[35.778709,-78.684798],[35.778852,-78.684052],[35.778876,-78.683856],[35.778252,-78.683612],[35.777307,-78.683054],[35.776307,-78.68229],[35.775663,-78.680858],[35.776562,-78.679399],[35.778808,-78.680139],[35.779173,-78.680139],[35.779208,-78.678776],[35.777545,-78.678336],[35.780534,-78.675904],[35.78066,-78.675992],[35.78073,-78.676185],[35.780512,-78.676298],[35.780676,-78.676738],[35.779852,-78.677282],[35.780254,-78.678221],[35.780078,-78.679337],[35.7804,-78.679879],[35.781945,-78.678905],[35.784588,-78.684973],[35.784736,-78.685477],[35.784812,-78.686328],[35.784777,-78.686939]]
-            },
-            {
-                campus: "North Campus", polygonId: "Polygon 1",
-                points: [[35.787727,-78.676946],[35.788366,-78.676603],[35.788435,-78.676384],[35.788663,-78.676249],[35.788906,-78.676072],[35.788829,-78.675704],[35.788724,-78.675277],[35.788666,-78.674778],[35.788714,-78.674713],[35.789089,-78.674652],[35.788965,-78.674406],[35.789003,-78.674244],[35.788912,-78.673801],[35.788838,-78.67341],[35.788705,-78.672778],[35.788622,-78.672447],[35.788569,-78.672189],[35.788467,-78.671754],[35.788387,-78.671371],[35.788241,-78.670694],[35.78812,-78.670192],[35.787973,-78.669518],[35.787852,-78.668935],[35.787765,-78.668512],[35.78769,-78.668189],[35.787571,-78.667639],[35.787357,-78.666856],[35.787231,-78.666403],[35.787113,-78.665959],[35.786964,-78.665476],[35.786841,-78.665057],[35.786715,-78.66458],[35.786579,-78.664088],[35.786399,-78.663475],[35.786348,-78.663325],[35.786209,-78.662959],[35.786102,-78.662816],[35.785855,-78.663114],[35.785573,-78.663382],[35.7865,-78.66458],[35.7865,-78.664088],[35.786399,-78.663475],[35.783363,-78.665171],[35.783359,-78.665198],[35.783794,-78.666485],[35.784234,-78.667816],[35.784634,-78.669071],[35.78533,-78.670707],[35.786292,-78.673132],[35.786923,-78.674623],[35.787419,-78.676174],[35.787727,-78.676946]]
-            },
-            {
-                campus: "North Campus", polygonId: "Polygon 2",
-                points: [[35.785446,-78.661],[35.784846,-78.661318],[35.784545,-78.661322],[35.784771,-78.662054],[35.785838,-78.661983],[35.785497,-78.661112]]
-            },
-            {
-                campus: "North Campus", polygonId: "Polygon 3",
-                points: [[35.787358,-78.661545],[35.787116,-78.661462],[35.786817,-78.661464],[35.78604,-78.661812],[35.786642,-78.661855],[35.786631,-78.662076],[35.787245,-78.662024]]
-            },
-            {
-                campus: "North Campus", polygonId: "Polygon 4",
-                points: [[35.787305,-78.663055],[35.787362,-78.662191],[35.786861,-78.662164],[35.786846,-78.662384],[35.786351,-78.662681],[35.786425,-78.662976],[35.786486,-78.663046],[35.787284,-78.663075]]
-            },
-            {
-                campus: "North Campus", polygonId: "Polygon 5",
-                points: [[35.787767,-78.6641],[35.786818,-78.664127],[35.787275,-78.665833],[35.787774,-78.665677]]
-            },
-            {
-                campus: "North Campus", polygonId: "Polygon 6",
-                points: [[35.789291,-78.670635],[35.788497,-78.670876],[35.788355,-78.670267],[35.788795,-78.670194],[35.788859,-78.670532],[35.789253,-78.670428]]
-            },
-            {
-                campus: "North Campus", polygonId: "Polygon 7",
-                points: [[35.789389,-78.671079],[35.789322,-78.670793],[35.78894,-78.670912],[35.788906,-78.671201]]
-            },
-            {
-                campus: "North Campus", polygonId: "Polygon 8",
-                points: [[35.787767,-78.6641],[35.7872,-78.6641],[35.7872,-78.665833],[35.787774,-78.665677],[35.789558,-78.673057],[35.789429,-78.672545],[35.789273,-78.672588]]
-            },
-            {
-                campus: "North Campus", polygonId: "Polygon 9",
-                points: [[35.789978,-78.674264],[35.789982,-78.674079],[35.789177,-78.67405],[35.789229,-78.674339]]
-            },
-            {
-                campus: "West Campus", polygonId: "Polygon 1",
-                points: [[35.802632,-78.707062],[35.80331,-78.704058],[35.803275,-78.700625],[35.803188,-78.697814],[35.801513,-78.694595],[35.800695,-78.694231],[35.797741,-78.695411],[35.796949,-78.696698],[35.796079,-78.69732],[35.795835,-78.701548],[35.795035,-78.705646],[35.796253,-78.706526],[35.79674,-78.70747],[35.796806,-78.707116],[35.797232,-78.707051],[35.797284,-78.707631],[35.797892,-78.70758],[35.797914,-78.705807],[35.799111,-78.705825],[35.799104,-78.705689],[35.799267,-78.7057],[35.799354,-78.707352],[35.801024,-78.707196],[35.800957,-78.704637],[35.801729,-78.704626],[35.801755,-78.707064],[35.801857,-78.707062],[35.801847,-78.706059],[35.802401,-78.706053],[35.802423,-78.70692],[35.802643,-78.706668],[35.80319,-78.704463]]
-            },
-            {
-                campus: "West Campus", polygonId: "Polygon 2",
-                points: [[35.801084,-78.711018],[35.801023,-78.709253],[35.801963,-78.709285],[35.802211,-78.710337],[35.802281,-78.711034]]
-            },
-            {
-                campus: "West Campus", polygonId: "Polygon 3",
-                points: [[35.798754,-78.712429],[35.79964,-78.712397],[35.799683,-78.711678],[35.802413,-78.711587],[35.8025,-78.71119],[35.803727,-78.711125],[35.804014,-78.713335],[35.805224,-78.718872],[35.806442,-78.722734],[35.806381,-78.723614],[35.80451,-78.725813],[35.800003,-78.726328]]
-            },
-            {
-                campus: "West Campus", polygonId: "Polygon 4",
-                points: [[35.786345,-78.699562],[35.788102,-78.699613],[35.788134,-78.701115],[35.789426,-78.700691],[35.794868,-78.700433],[35.794795,-78.696072],[35.791511,-78.69694],[35.790166,-78.697289],[35.790351,-78.698241],[35.790199,-78.69831],[35.790018,-78.698035],[35.789033,-78.698064],[35.789049,-78.697657],[35.788788,-78.697659],[35.788536,-78.697793],[35.788808,-78.697949],[35.788845,-78.69856],[35.788283,-78.698783],[35.788101,-78.698024],[35.787511,-78.698308],[35.786434,-78.699421]]
-            },
-            {
-                campus: "Centennial Campus", polygonId: "Polygon 1",
-                points: [[35.773848,-78.68146],[35.773793,-78.682345],[35.774011,-78.682367],[35.774616,-78.681685],[35.775045,-78.681219],[35.775706,-78.680218],[35.776091,-78.679473],[35.77575,-78.679341],[35.775996,-78.67815],[35.776163,-78.676916],[35.776527,-78.675248],[35.776483,-78.674494],[35.776894,-78.67439],[35.776496,-78.672727],[35.775863,-78.670573],[35.775732,-78.670316],[35.775454,-78.669978],[35.774949,-78.6695],[35.774479,-78.669221],[35.773839,-78.669028],[35.773143,-78.668956],[35.77281,-78.669047],[35.771709,-78.669229],[35.771524,-78.669245],[35.771176,-78.66942],[35.770664,-78.669677],[35.769489,-78.670227],[35.767996,-78.670683],[35.766751,-78.670664],[35.765807,-78.670415],[35.764527,-78.669752],[35.762995,-78.668084],[35.762137,-78.666915],[35.761471,-78.667663],[35.759469,-78.66391],[35.75881,-78.665093],[35.758912,-78.666405],[35.758767,-78.667213],[35.757637,-78.669345],[35.756173,-78.677072],[35.755428,-78.679879],[35.752767,-78.693409],[35.752788,-78.69406],[35.753057,-78.694073],[35.753118,-78.694422],[35.754612,-78.693885],[35.754436,-78.693849],[35.754411,-78.693668],[35.754572,-78.693443],[35.754835,-78.69319],[35.755206,-78.692872],[35.755155,-78.692734],[35.759536,-78.689044],[35.764066,-78.689128],[35.765546,-78.688988],[35.76558,-78.690662],[35.766303,-78.690619],[35.766286,-78.689021],[35.769524,-78.688881],[35.769459,-78.682294],[35.771346,-78.682354],[35.771364,-78.68171],[35.773212,-78.681567],[35.773621,-78.681532]]
-            },
-            {
-                campus: "Centennial Campus", polygonId: "Polygon 2",
-                points: [[35.776395,-78.671069],[35.776585,-78.67041],[35.776489,-78.670404],[35.776408,-78.67031],[35.776449,-78.668265],[35.776798,-78.666978],[35.777016,-78.666275],[35.777983,-78.666154],[35.777346,-78.665229],[35.776422,-78.66535],[35.776162,-78.663323],[35.774639,-78.663396],[35.774652,-78.665348],[35.773604,-78.665167],[35.772918,-78.665202],[35.773093,-78.665817],[35.773049,-78.665836],[35.773156,-78.666448],[35.772707,-78.666333],[35.771959,-78.66576],[35.770343,-78.665005],[35.769919,-78.666166],[35.769801,-78.666861],[35.76786,-78.665643],[35.766737,-78.664847],[35.765276,-78.66415],[35.763116,-78.667525],[35.764726,-78.669188],[35.765708,-78.669778],[35.766465,-78.670038],[35.767382,-78.670172],[35.768121,-78.670137],[35.768992,-78.669877],[35.769771,-78.669491],[35.770618,-78.669014],[35.771969,-78.668544],[35.773381,-78.668431],[35.774302,-78.668571],[35.774987,-78.668869],[35.775547,-78.669351],[35.776121,-78.670191]]
-            }
-        ];
-
-        // RAY-CASTING POINT-IN-POLYGON ALGORITHM
-        function isPointInPolygon(lat, lon, vs) {
-            let inside = false;
-            for (let i = 0, j = vs.length - 1; i < vs.length; j = i++) {
-                const xi = vs[i][0], yi = vs[i][1];
-                const xj = vs[j][0], yj = vs[j][1];
-                const intersect = ((yi > lon) !== (yj > lon)) &&
-                    (lat < (xj - xi) * (lon - yi) / (yj - yi) + xi);
-                if (intersect) inside = !inside;
-            }
-            return inside;
-        }
-
-        function checkCampusLocation(lat, lon) {
-            for (const poly of NCSU_POLYGONS) {
-                if (isPointInPolygon(lat, lon, poly.points)) {
-                    return { onCampus: true, campusName: poly.campus };
-                }
-            }
-            return { onCampus: false, campusName: "OFF CAMPUS" };
-        }
-
         // LOCAL SURVEYOR RETRIEVAL LAYER
         document.addEventListener("DOMContentLoaded", function() {
             const savedUnityId = localStorage.getItem("ncsu_surveyor_id");
@@ -438,6 +338,46 @@
             document.getElementById('circ_input').addEventListener('input', handleCircumferenceInput);
             document.getElementById('dbh_input').addEventListener('input', handleDbhInput);
         });
+
+        // CAMPUS BOUNDARY POLYGONS
+const CAMPUS_POLYGONS = [
+    // Central Campus - Polygon 1
+    [[35.782836,-78.665516],[35.782093,-78.666024],[35.782028,-78.666024],[35.781911,-78.666859],[35.781815,-78.667667],[35.781963,-78.668171],[35.781455,-78.668334],[35.781028,-78.668361],[35.780997,-78.668016],[35.781154,-78.667496],[35.780443,-78.667234],[35.780006,-78.667306],[35.779597,-78.668364],[35.779851,-78.67143],[35.780836,-78.675159],[35.78155,-78.676828],[35.782436,-78.678854],[35.784802,-78.684415],[35.78499,-78.684934],[35.785218,-78.686952],[35.787009,-78.686956],[35.787932,-78.686876],[35.788304,-78.686725],[35.788732,-78.68636],[35.788938,-78.686197],[35.789021,-78.685879],[35.789267,-78.685913],[35.789655,-78.685594],[35.789507,-78.685245],[35.790716,-78.684824],[35.790138,-78.683819],[35.789593,-78.682916],[35.789095,-78.681949],[35.788267,-78.680037],[35.787398,-78.677655],[35.786524,-78.675401],[35.786225,-78.674575],[35.785807,-78.673452],[35.785484,-78.67256],[35.78457,-78.670026],[35.783831,-78.668092],[35.782822,-78.665501]],
+    // Central Campus - Polygon 2
+    [[35.78894,-78.686312],[35.788131,-78.686902],[35.787034,-78.686999],[35.787021,-78.69395],[35.787049,-78.693987],[35.787073,-78.697292],[35.789249,-78.69663],[35.789225,-78.693862],[35.789096,-78.689346],[35.788943,-78.686428]],
+    // South Campus - Polygon 1
+    [[35.784852,-78.686869],[35.779391,-78.687105],[35.779259,-78.68472],[35.778709,-78.684798],[35.778852,-78.684052],[35.778876,-78.683856],[35.778252,-78.683612],[35.777307,-78.683054],[35.776307,-78.68229],[35.775663,-78.680858],[35.776562,-78.679399],[35.778808,-78.680139],[35.779173,-78.680139],[35.779208,-78.678776],[35.777545,-78.678336],[35.780534,-78.675904],[35.78066,-78.675992],[35.78073,-78.676185],[35.780512,-78.676298],[35.780676,-78.676738],[35.779852,-78.677282],[35.780254,-78.678221],[35.780078,-78.679337],[35.7804,-78.679879],[35.781945,-78.678905],[35.784588,-78.684973],[35.784736,-78.685477],[35.784812,-78.686328],[35.784777,-78.686939]],
+    // North Campus - Polygon 1
+    [[35.787727,-78.676946],[35.788366,-78.676603],[35.788435,-78.676384],[35.788663,-78.676249],[35.788906,-78.676072],[35.788829,-78.675704],[35.788724,-78.675277],[35.788666,-78.674778],[35.788714,-78.674713],[35.789089,-78.674652],[35.788965,-78.674406],[35.789003,-78.674244],[35.788912,-78.673801],[35.788838,-78.67341],[35.788705,-78.672778],[35.788622,-78.672447],[35.788569,-78.672189],[35.788467,-78.671754],[35.788387,-78.671371],[35.788241,-78.670694],[35.78812,-78.670192],[35.787973,-78.669518],[35.787852,-78.668935],[35.787765,-78.668512],[35.78769,-78.668189],[35.787571,-78.667639],[35.787357,-78.666856],[35.787231,-78.666403],[35.787113,-78.665959],[35.786964,-78.665476],[35.786841,-78.665057],[35.786715,-78.66458],[35.786579,-78.664088],[35.786399,-78.663475],[35.786348,-78.663325],[35.786209,-78.662959],[35.786102,-78.662816],[35.785855,-78.663114],[35.785573,-78.663382],[35.7865,-78.66458],[35.7865,-78.664088],[35.786399,-78.663475],[35.783363,-78.665171],[35.783359,-78.665198],[35.783794,-78.666485],[35.784234,-78.667816],[35.784634,-78.669071],[35.78533,-78.670707],[35.786292,-78.673132],[35.786923,-78.674623],[35.787419,-78.676174],[35.787727,-78.676946]],
+    // North Campus - Polygon 2
+    [[35.785446,-78.661],[35.784846,-78.661318],[35.784545,-78.661322],[35.784771,-78.662054],[35.785838,-78.661983],[35.785497,-78.661112]],
+    // North Campus - Polygon 3
+    [[35.787358,-78.661545],[35.787116,-78.661462],[35.786817,-78.661464],[35.78604,-78.661812],[35.786642,-78.661855],[35.786631,-78.662076],[35.787245,-78.662024]],
+    // North Campus - Polygon 4
+    [[35.787305,-78.663055],[35.787362,-78.662191],[35.786861,-78.662164],[35.786846,-78.662384],[35.786351,-78.662681],[35.786425,-78.662976],[35.786486,-78.663046],[35.787284,-78.663075]],
+    // North Campus - Polygon 5
+    [[35.787767,-78.6641],[35.786818,-78.664127],[35.787275,-78.665833],[35.787774,-78.665677]],
+    // North Campus - Polygon 6
+    [[35.789291,-78.670635],[35.788497,-78.670876],[35.788355,-78.670267],[35.788795,-78.670194],[35.788859,-78.670532],[35.789253,-78.670428]],
+    // North Campus - Polygon 7
+    [[35.789389,-78.671079],[35.789322,-78.670793],[35.78894,-78.670912],[35.789006,-78.671201]],
+    // North Campus - Polygon 8
+    [[35.787767,-78.6641],[35.7872,-78.6641],[35.7872,-78.665833],[35.787774,-78.665677],[35.789558,-78.673057],[35.789429,-78.672545],[35.789273,-78.672588]],
+    // North Campus - Polygon 9
+    [[35.789978,-78.674264],[35.789982,-78.674079],[35.789177,-78.67405],[35.789229,-78.674339]],
+    // West Campus - Polygon 1
+    [[35.802632,-78.707062],[35.80331,-78.704058],[35.803275,-78.700625],[35.803188,-78.697814],[35.801513,-78.694595],[35.800695,-78.694231],[35.797741,-78.695411],[35.796949,-78.696698],[35.796079,-78.69732],[35.795835,-78.701548],[35.795035,-78.705646],[35.796253,-78.706526],[35.79674,-78.70747],[35.796806,-78.707116],[35.797232,-78.707051],[35.797284,-78.707631],[35.797892,-78.70758],[35.797914,-78.705807],[35.799111,-78.70583],[35.799104,-78.705689],[35.799267,-78.7057],[35.799354,-78.707352],[35.801024,-78.707196],[35.800957,-78.704637],[35.801729,-78.704626],[35.801755,-78.707064],[35.801857,-78.707062],[35.801847,-78.706059],[35.802401,-78.706053],[35.802423,-78.70692],[35.802643,-78.706668],[35.80319,-78.704463]],
+    // West Campus - Polygon 2
+    [[35.801084,-78.711018],[35.801023,-78.709253],[35.801963,-78.709285],[35.802211,-78.710337],[35.802281,-78.711034]],
+    // West Campus - Polygon 3
+    [[35.798754,-78.712429],[35.79964,-78.712397],[35.799683,-78.711678],[35.802413,-78.711587],[35.8025,-78.71119],[35.803727,-78.711125],[35.804014,-78.713335],[35.805224,-78.718872],[35.806442,-78.722734],[35.806381,-78.723614],[35.80451,-78.725813],[35.800003,-78.726328]],
+    // West Campus - Polygon 4
+    [[35.786345,-78.699562],[35.788102,-78.699613],[35.788134,-78.701115],[35.789426,-78.700691],[35.794868,-78.700433],[35.794795,-78.696072],[35.791511,-78.69694],[35.790166,-78.697289],[35.790351,-78.698241],[35.790199,-78.69831],[35.790018,-78.698035],[35.789033,-78.698064],[35.789049,-78.697657],[35.788788,-78.697659],[35.788536,-78.697793],[35.788808,-78.697949],[35.788845,-78.69856],[35.788283,-78.698783],[35.788101,-78.698024],[35.787511,-78.698308],[35.786434,-78.699421]],
+    // Centennial Campus - Polygon 1
+    [[35.773848,-78.68146],[35.773793,-78.682345],[35.774011,-78.682367],[35.774616,-78.681685],[35.775045,-78.681219],[35.775706,-78.680218],[35.776091,-78.679473],[35.77575,-78.679341],[35.775996,-78.67815],[35.776163,-78.676916],[35.776527,-78.675248],[35.776483,-78.674494],[35.776894,-78.67439],[35.776496,-78.672727],[35.775863,-78.670573],[35.775732,-78.670316],[35.775454,-78.669978],[35.774949,-78.6695],[35.774479,-78.669221],[35.773839,-78.669028],[35.773143,-78.668956],[35.772281,-78.669047],[35.771709,-78.669229],[35.771524,-78.669245],[35.771176,-78.66942],[35.770664,-78.669677],[35.769489,-78.670227],[35.767996,-78.670683],[35.766751,-78.670664],[35.765807,-78.670415],[35.764527,-78.669752],[35.762995,-78.668084],[35.762137,-78.666915],[35.761471,-78.667663],[35.759469,-78.66391],[35.75881,-78.665093],[35.758912,-78.666405],[35.758767,-78.667213],[35.757637,-78.669345],[35.756173,-78.677072],[35.755428,-78.679879],[35.752767,-78.693409],[35.752788,-78.69406],[35.753057,-78.694073],[35.753118,-78.694422],[35.754612,-78.693885],[35.754436,-78.693849],[35.754411,-78.693668],[35.754572,-78.693443],[35.754835,-78.69319],[35.755206,-78.692872],[35.755155,-78.692734],[35.759536,-78.689044],[35.764066,-78.689128],[35.765546,-78.688988],[35.76558,-78.690662],[35.766303,-78.690619],[35.766286,-78.689021],[35.769524,-78.688881],[35.769459,-78.682294],[35.771346,-78.682354],[35.771364,-78.68171],[35.773212,-78.681567],[35.773621,-78.681532]],
+    // Centennial Campus - Polygon 2
+    [[35.776395,-78.671069],[35.776585,-78.67041],[35.776489,-78.670404],[35.776408,-78.67031],[35.776449,-78.668265],[35.776798,-78.666978],[35.777016,-78.666275],[35.776983,-78.666154],[35.777346,-78.665229],[35.776422,-78.66535],[35.776162,-78.663323],[35.774639,-78.663396],[35.774652,-78.665348],[35.773604,-78.665167],[35.772918,-78.665202],[35.773093,-78.665817],[35.773049,-78.665836],[35.773156,-78.666448],[35.772707,-78.666333],[35.771959,-78.66576],[35.770343,-78.665005],[35.769919,-78.666166],[35.769801,-78.666861],[35.76786,-78.665643],[35.766737,-78.664847],[35.765276,-78.66415],[35.763116,-78.667525],[35.764726,-78.669188],[35.765708,-78.669778],[35.766465,-78.670038],[35.767382,-78.670172],[35.768121,-78.670137],[35.768992,-78.669877],[35.769771,-78.669491],[35.770618,-78.669014],[35.771969,-78.668544],[35.773381,-78.668431],[35.774302,-78.668571],[35.774987,-78.668869],[35.775547,-78.669351],[35.776121,-78.670191]]
+];
 
         // HAVERSINE MATHEMATICAL SPHERICAL DISTANCE ENGINE
         function calculateDistanceInFeet(lat1, lon1, lat2, lon2) {
@@ -451,6 +391,26 @@
             return R * c;
         }
 
+        // POINT-IN-POLYGON (RAY-CASTING) ALGORITHM
+function isPointInPolygon(lat, lon, polygon) {
+    let inside = false;
+    for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+        const xi = polygon[i][0], yi = polygon[i][1];
+        const xj = polygon[j][0], yj = polygon[j][1];
+        
+        const intersect = ((yi > lon) !== (yj > lon)) &&
+            (lat < (xj - xi) * (lon - yi) / (yj - yi) + xi);
+        if (intersect) inside = !inside;
+    }
+    return inside;
+}
+
+// CAMPUS BOUNDARY CHECKER
+function isPointOnCampus(lat, lon) {
+    return CAMPUS_POLYGONS.some(polygon => isPointInPolygon(lat, lon, polygon));
+}
+
+        // COORD SNAP HANDLER WITH REAL MOBILE GPS LAYERS & TROLL CATCH FILTER
         function handleGPS() { 
             const gpsBtn = document.getElementById('gps_btn');
             const msg = document.getElementById('gps-msg');
@@ -471,53 +431,44 @@
                 const currentCoordsString = `${currentLat},${currentLon}`;
                 document.getElementById('coords').value = currentCoordsString; 
                 
-                // EVALUATE ON/OFF CAMPUS GEOFENCE STATUS
-                const campusEvaluation = checkCampusLocation(currentLat, currentLon);
-                const campusStatusInput = document.getElementById('campus_status');
-
                 // Reconfigure physical layout display models
                 const statusBox = document.getElementById('status-box');
-                
-                if (campusEvaluation.onCampus) {
-                    campusStatusInput.value = campusEvaluation.campusName;
-                    statusBox.className = "bg-emerald-50 border-2 border-dashed border-emerald-500 rounded-xl p-4 text-center transition-all duration-300";
-                    msg.className = "text-xs font-black text-emerald-700 uppercase tracking-wider flex items-center justify-center gap-2";
-                    msg.innerHTML = `✅ ON CAMPUS - ${campusEvaluation.campusName.toUpperCase()} (${currentLat.toFixed(4)}, ${currentLon.toFixed(4)})`;
-                } else {
-                    campusStatusInput.value = "OFF CAMPUS";
-                    statusBox.className = "bg-amber-50 border-2 border-dashed border-amber-500 rounded-xl p-4 text-center transition-all duration-300";
-                    msg.className = "text-xs font-black text-amber-700 uppercase tracking-wider flex items-center justify-center gap-2";
-                    msg.innerHTML = `⚠️ OFF CAMPUS ENTRY DETECTED (${currentLat.toFixed(4)}, ${currentLon.toFixed(4)})`;
-                    
-                    // OFF CAMPUS WARNING POPUP
-                    alert("⚠️ CAMPUS BOUNDARY WARNING ⚠️\n\nYour detected GPS coordinates (" + currentLat.toFixed(5) + ", " + currentLon.toFixed(5) + ") are outside official NC State campus boundaries.\n\nIf you are conducting an off-campus survey, you may proceed.");
-                }
+                statusBox.className = "bg-emerald-50 border-2 border-dashed border-emerald-500 rounded-xl p-4 text-center transition-all duration-300";
+                msg.className = "text-xs font-black text-emerald-700 uppercase tracking-wider flex items-center justify-center gap-2";
+                msg.innerHTML = `✅ GPS Coordinates Saved (${currentLat.toFixed(4)}, ${currentLon.toFixed(4)})`;
 
-                // EVALUATE SPATIAL HISTORY
-                const lastTreeJSON = localStorage.getItem("last_surveyed_tree");
-                const proximityBox = document.getElementById("proximity-box");
-                const proximityMsg = document.getElementById("proximity-msg");
-                const hiddenProxInput = document.getElementById("hidden_proximity");
+               // EVALUATE SPATIAL HISTORY & ON-CAMPUS STATUS
+const lastTreeJSON = localStorage.getItem("last_surveyed_tree");
+const proximityBox = document.getElementById("proximity-box");
+const proximityMsg = document.getElementById("proximity-msg");
+const hiddenProxInput = document.getElementById("hidden_proximity");
 
-                if (lastTreeJSON) {
-                    const lastTree = JSON.parse(lastTreeJSON);
-                    const distance = calculateDistanceInFeet(currentLat, currentLon, lastTree.lat, lastTree.lon);
-                    
-                    proximityBox.classList.remove("hidden");
-                    
-                    // CRITICAL 10-FOOT THRESHOLD TRIGGER (THE TROLL CATCH)
-                    if (distance <= 10) {
-                        proximityBox.className = "rounded-xl p-4 text-center border-2 border-dashed bg-red-50 border-red-400 text-red-900";
-                        proximityMsg.innerHTML = `⚠️ Troll Catch Warning: High proximity event detected! Distance to previous entry: ${distance.toFixed(1)} feet.`;
-                        hiddenProxInput.value = `TROLL`;
-                    } else {
-                        proximityBox.className = "rounded-xl p-4 text-center border-2 border-dashed bg-zinc-50 border-zinc-300 text-zinc-700";
-                        proximityMsg.innerHTML = `🟢 Distance validation clear. Previous asset is ${distance.toFixed(0)} feet away.`;
-                        hiddenProxInput.value = `CLEAR`;
-                    }
-                } else {
-                    hiddenProxInput.value = "CLEAR";
-                }
+const onCampus = isPointOnCampus(currentLat, currentLon);
+
+if (!onCampus) {
+    proximityBox.classList.remove("hidden");
+    proximityBox.className = "rounded-xl p-4 text-center border-2 border-dashed bg-amber-50 border-amber-500 text-amber-900";
+    proximityMsg.innerHTML = `🚨 OFF-CAMPUS DETECTED: This location is outside registered NCSU campus boundaries.`;
+    hiddenProxInput.value = `OFF-CAMPUS`;
+} else if (lastTreeJSON) {
+    const lastTree = JSON.parse(lastTreeJSON);
+    const distance = calculateDistanceInFeet(currentLat, currentLon, lastTree.lat, lastTree.lon);
+    
+    proximityBox.classList.remove("hidden");
+    
+    // CRITICAL 10-FOOT THRESHOLD TRIGGER (THE TROLL CATCH)
+    if (distance <= 10) {
+        proximityBox.className = "rounded-xl p-4 text-center border-2 border-dashed bg-red-50 border-red-400 text-red-900";
+        proximityMsg.innerHTML = `⚠️ Troll Catch Warning: High proximity event detected! Distance to previous entry: ${distance.toFixed(1)} feet.`;
+        hiddenProxInput.value = `TROLL`;
+    } else {
+        proximityBox.className = "rounded-xl p-4 text-center border-2 border-dashed bg-zinc-50 border-zinc-300 text-zinc-700";
+        proximityMsg.innerHTML = `🟢 Distance validation clear. Previous asset is ${distance.toFixed(0)} feet away.`;
+        hiddenProxInput.value = `CLEAR`;
+    }
+} else {
+    hiddenProxInput.value = "CLEAR";
+}
 
                 const submitBtn = document.getElementById('submit_btn');
                 submitBtn.disabled = false;
@@ -539,134 +490,203 @@
             });
         }
 
+        // BALANCED PAYLOAD PACKER AND NET TRANSMITTER
+        function handleFormSubmission(event) {
+            event.preventDefault();
+            
+            const currentId = document.getElementById("unity_id").value.trim().toLowerCase();
+            if (currentId) {
+                localStorage.setItem("ncsu_surveyor_id", currentId);
+            }
+
+            document.getElementById('timestamp').value = new Date().toLocaleString();
+
+            const overlay = document.getElementById("overlay");
+            overlay.style.display = "flex";
+
+            // Extract geolocation metrics to register historical parameters prior to canvas clear
+            const coordString = document.getElementById('coords').value;
+            const [savedLat, savedLon] = coordString.split(',').map(Number);
+
+            const formElement = document.getElementById('treeForm');
+            
+            // CONVERT TO RAW URL ENCODED FORMAT TO FORCIBLY ALIGN SHEETMONKEY MATRIX CELLS
+            const urlEncodedData = new URLSearchParams(new FormData(formElement));
+
+            fetch(GOOGLE_WEB_APP_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: urlEncodedData.toString()
+            })
+            .then(response => {
+                overlay.style.display = "none";
+                alert("Tree data logged successfully to operational spreadsheet!");
+                
+                // Write successful target parameters into spatial hardware storage loop
+                localStorage.setItem("last_surveyed_tree", JSON.stringify({ lat: savedLat, lon: savedLon }));
+
+                // Clear layout structures, leaving the identity token safe
+                document.getElementById("circ_input").value = "";
+                document.getElementById("dbh_input").value = "";
+                document.getElementById("species_group").selectedIndex = 0;
+                document.getElementById("condition_select").value = "0.8";
+                
+                const checkboxes = document.querySelectorAll('input[name="N:Likes[]"]');
+                checkboxes.forEach(cb => cb.checked = false);
+                document.getElementById('likes_label').textContent = "Select value(s)...";
+
+                // Re-arm form execution sequence blocks
+                document.getElementById('coords').value = "";
+                document.getElementById('proximity-box').classList.add('hidden');
+                
+                const statusBox = document.getElementById('status-box');
+                statusBox.className = "bg-amber-50 border-2 border-dashed border-amber-300 rounded-xl p-4 text-center transition-all duration-300";
+                
+                const msg = document.getElementById('gps-msg');
+                msg.className = "text-xs font-black text-amber-700 uppercase tracking-wider flex items-center justify-center gap-2";
+                msg.innerHTML = "⚠️ Location Required Before Submitting";
+
+                const submitBtn = document.getElementById('submit_btn');
+                submitBtn.disabled = true;
+                submitBtn.className = "w-full bg-zinc-300 text-zinc-500 cursor-not-allowed p-5 rounded-xl font-black uppercase tracking-widest transition-all text-sm shadow-inner";
+                submitBtn.textContent = "Lock Location Above to Enable Submit";
+
+                clearMetrics();
+            })
+            .catch(error => {
+                overlay.style.display = "none";
+                console.error("SheetMonkey Data Terminal Exception:", error);
+                alert("Network error: Transmission path failed to respond.");
+            });
+        }
+
+        // TABS ROUTING CORE ROUTINES
+        function showPage(id) {
+            const pages = ['form', 'map', 'leader'];
+            pages.forEach(p => {
+                document.getElementById('page-' + p).classList.add('hidden');
+                document.getElementById('btn-' + p).className = "flex-1 inline-flex items-center justify-center gap-1 sm:gap-2 p-3 sm:p-4 font-black uppercase text-[9px] sm:text-[10px] tracking-tight sm:tracking-widest transition-all text-zinc-400 hover:text-zinc-600 bg-zinc-50 border-b-4 border-transparent truncate";
+            });
+            document.getElementById('page-' + id).classList.remove('hidden');
+            document.getElementById('btn-' + id).className = "flex-1 inline-flex items-center justify-center gap-1 sm:gap-2 p-3 sm:p-4 font-black uppercase text-[9px] sm:text-[10px] tracking-tight sm:tracking-widest transition-all bg-white text-red-600 border-b-4 border-red-600 truncate";
+        }
+
+        // CARBON FORESTRY MATHEMATICS MATRIX LAYER
         function handleCircumferenceInput() {
-            const circ = parseFloat(document.getElementById('circ_input').value);
+            const circ = parseFloat(this.value);
             if (!isNaN(circ) && circ > 0) {
-                const calculatedDbh = (circ / Math.PI).toFixed(1);
-                document.getElementById('dbh_input').value = calculatedDbh;
-            } else if (document.getElementById('circ_input').value === "") {
+                const calculatedDbh = circ / Math.PI;
+                document.getElementById('dbh_input').value = calculatedDbh.toFixed(1);
+                document.getElementById('hidden_circ').value = circ.toFixed(1);
+            } else {
                 document.getElementById('dbh_input').value = "";
+                document.getElementById('hidden_circ').value = "";
             }
             updateMath();
         }
 
         function handleDbhInput() {
-            const dbh = parseFloat(document.getElementById('dbh_input').value);
+            const dbh = parseFloat(this.value);
             if (!isNaN(dbh) && dbh > 0) {
-                const calculatedCirc = (dbh * Math.PI).toFixed(1);
-                document.getElementById('circ_input').value = calculatedCirc;
-            } else if (document.getElementById('dbh_input').value === "") {
+                const calculatedCirc = dbh * Math.PI;
+                document.getElementById('circ_input').value = calculatedCirc.toFixed(1);
+                document.getElementById('hidden_circ').value = calculatedCirc.toFixed(1);
+            } else {
                 document.getElementById('circ_input').value = "";
+                document.getElementById('hidden_circ').value = "";
             }
             updateMath();
         }
 
-        // SPECIES COEFFICIENTS AND MATH LOGIC
-        function getSpeciesParams(species) {
-            switch(species) {
-                case 'hardwood': return { b0: -2.0127, b1: 2.4342, rate: 0.025, baseVal: 4.50 };
-                case 'soft_hardwood': return { b0: -2.4757, b1: 2.4410, rate: 0.035, baseVal: 3.20 };
-                case 'evergreen': return { b0: -2.5356, b1: 2.4349, rate: 0.030, baseVal: 2.80 };
-                case 'small_ornate': return { b0: -2.2198, b1: 2.2471, rate: 0.020, baseVal: 5.10 };
-                default: return { b0: -2.0127, b1: 2.4342, rate: 0.025, baseVal: 3.50 };
-            }
-        }
-
-        function calculateBiomass(dbh, species) {
-            const p = getSpeciesParams(species);
-            const dbhCm = dbh * 2.54;
-            const totalBiomassKg = Math.exp(p.b0 + (p.b1 * Math.log(dbhCm)));
-            const dryWeightLbs = totalBiomassKg * 2.20462;
-            const carbonLbs = dryWeightLbs * 0.5;
-            const co2Lbs = carbonLbs * 3.67;
-            return Math.max(0, co2Lbs);
-        }
-
         function updateMath() {
-            const dbhInput = document.getElementById('dbh_input');
-            const dbhVal = parseFloat(dbhInput.value);
-            const dbhWarning = document.getElementById('dbh-warning');
+            const dbh = parseFloat(document.getElementById('dbh_input').value);
+            const species = document.getElementById('species_group').value;
+            const condition = parseFloat(document.getElementById('condition_select').value);
+            const warningBox = document.getElementById('dbh-warning');
             const submitBtn = document.getElementById('submit_btn');
+            const hasGps = document.getElementById('coords').value !== "";
 
-            if (dbhVal > 100) {
-                dbhWarning.classList.remove('hidden');
+            if (dbh > 100) {
+                warningBox.classList.remove('hidden');
                 submitBtn.disabled = true;
                 submitBtn.className = "w-full bg-zinc-300 text-zinc-500 cursor-not-allowed p-5 rounded-xl font-black uppercase tracking-widest transition-all text-sm shadow-inner";
-                submitBtn.textContent = "Form Locked - DBH Over 100\" Limit";
                 return;
             } else {
-                dbhWarning.classList.add('hidden');
-                if (document.getElementById('coords').value) {
+                warningBox.classList.add('hidden');
+                if (hasGps) {
                     submitBtn.disabled = false;
                     submitBtn.className = "w-full ncsu-red text-white p-5 rounded-xl font-black uppercase tracking-widest shadow-xl hover:bg-red-700 active:scale-[0.99] transition-all text-sm cursor-pointer border-b-4 border-red-900";
-                    submitBtn.textContent = "Confirm Tree Entry";
                 }
             }
 
-            const species = document.getElementById('species_group').value;
-            const condFactor = parseFloat(document.getElementById('condition_select').value);
-
-            if (!dbhVal || !species) {
-                document.getElementById('display-co2').textContent = "0";
-                document.getElementById('display-value').textContent = "0.00";
-                document.getElementById('hidden_co2').value = "0";
-                document.getElementById('hidden_value').value = "0";
-                document.getElementById('hidden_circ').value = document.getElementById('circ_input').value || "0";
-                updateGraph([0, 0, 0, 0, 0]);
+            if (isNaN(dbh) || !species || isNaN(condition)) {
+                clearMetrics();
                 return;
             }
 
-            const currentCirc = document.getElementById('circ_input').value || (dbhVal * Math.PI).toFixed(1);
-            document.getElementById('hidden_circ').value = currentCirc;
+            // Forestry Biomass Growth Constants
+            let factor = 0.15; 
+            let assetMultiplier = 4.50; 
+            if (species === 'hardwood') { factor = 0.22; assetMultiplier = 6.25; }
+            else if (species === 'evergreen') { factor = 0.18; assetMultiplier = 3.50; }
+            else if (species === 'small_ornate') { factor = 0.12; assetMultiplier = 5.00; }
 
-            const baseCO2 = calculateBiomass(dbhVal, species);
-            const finalCO2 = baseCO2 * condFactor;
-            
-            const params = getSpeciesParams(species);
-            const assetValue = (finalCO2 * 0.18 * params.baseVal * condFactor);
+            // Calculate Base Biomass & CO2 Sequestration Profiles
+            const baseCarbon = (dbh * dbh * factor) * 15 * condition;
+            document.getElementById('display-co2').textContent = Math.round(baseCarbon);
+            document.getElementById('hidden_co2').value = Math.round(baseCarbon);
 
-            document.getElementById('display-co2').textContent = Math.round(finalCO2).toLocaleString();
-            document.getElementById('display-value').textContent = assetValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            const financialAssetValue = baseCarbon * assetMultiplier * 0.035;
+            document.getElementById('display-value').textContent = financialAssetValue.toFixed(2);
+            document.getElementById('hidden_value').value = financialAssetValue.toFixed(2);
 
-            document.getElementById('hidden_co2').value = Math.round(finalCO2);
-            document.getElementById('hidden_value').value = assetValue.toFixed(2);
-
-            // Calculate 20-year forecast curve
-            const forecast = [];
-            for (let year = 0; year <= 20; year += 5) {
-                const projectedDbh = dbhVal + (year * params.rate * 10);
-                const projectedBiomass = calculateBiomass(projectedDbh, species) * condFactor;
-                forecast.push(projectedBiomass);
-            }
-            updateGraph(forecast);
-        }
-
-        function updateGraph(data) {
-            const maxVal = Math.max(...data, 10);
-            document.getElementById('yScaleTop').textContent = Math.round(maxVal).toLocaleString();
-            document.getElementById('yScaleMid').textContent = Math.round(maxVal / 2).toLocaleString();
-            document.getElementById('yScaleBot').textContent = "0";
-
+            // Render SVG 20-Year Performance Forecast Data Points
             const points = [];
+            for (let i = 0; i < 5; i++) {
+                const yearInterval = i * 5;
+                const projectedDbh = dbh + (yearInterval * 0.25 * condition);
+                points.push((projectedDbh * projectedDbh * factor) * 15 * condition);
+            }
+
+            const maxVal = Math.max(...points) * 1.15;
+            document.getElementById('yScaleTop').textContent = Math.round(maxVal);
+            document.getElementById('yScaleMid').textContent = Math.round(maxVal / 2);
+            document.getElementById('yScaleBot').textContent = 0;
+
             const xCoords = [60, 140, 220, 300, 380];
-            
-            data.forEach((val, index) => {
-                const y = 160 - ((val / maxVal) * 130);
-                points.push(`${xCoords[index]} ${y}`);
-                const circle = document.getElementById(`p${index + 1}`);
-                if (circle) {
-                    circle.setAttribute('cy', y);
-                }
+            let pathD = "";
+
+            points.forEach((val, idx) => {
+                const yCoord = 160 - ((val / maxVal) * 130);
+                const dot = document.getElementById('p' + (idx + 1));
+                dot.setAttribute('cx', xCoords[idx]);
+                dot.setAttribute('cy', yCoord);
+                
+                if (idx === 0) pathD += `M ${xCoords[idx]} ${yCoord}`;
+                else pathD += ` L ${xCoords[idx]} ${yCoord}`;
             });
 
-            const path = document.getElementById('svgPath');
-            if (path && points.length === 5) {
-                path.setAttribute('d', `M ${points[0]} L ${points[1]} L ${points[2]} L ${points[3]} L ${points[4]}`);
-            }
+            document.getElementById('svgPath').setAttribute('d', pathD);
         }
 
-        function toggleLikes(event) {
-            event.stopPropagation();
+        function clearMetrics() {
+            document.getElementById('display-co2').textContent = "0";
+            document.getElementById('display-value').textContent = "0.00";
+            document.getElementById('hidden_co2').value = "";
+            document.getElementById('hidden_value').value = "";
+            
+            const resetPath = "M 60 160 L 140 160 L 220 160 L 300 160 L 380 160";
+            document.getElementById('svgPath').setAttribute('d', resetPath);
+            for (let i = 1; i <= 5; i++) {
+                document.getElementById('p' + i).setAttribute('cy', 160);
+            }
+            document.getElementById('yScaleTop').textContent = "0";
+            document.getElementById('yScaleMid').textContent = "0";
+        }
+
+        // CUSTOM UI DROPDOWN MODAL HANDLERS
+        function toggleLikes(e) {
+            e.stopPropagation();
             const menu = document.getElementById('likes_menu');
             menu.classList.toggle('hidden');
         }
@@ -674,119 +694,31 @@
         function updateLikesLabel() {
             const checkboxes = document.querySelectorAll('input[name="N:Likes[]"]:checked');
             const label = document.getElementById('likes_label');
-            
             if (checkboxes.length === 0) {
                 label.textContent = "Select value(s)...";
                 label.className = "text-sm text-zinc-400";
             } else {
-                const selectedValues = Array.from(checkboxes).map(cb => {
-                    const text = cb.parentNode.textContent.trim();
-                    return text.split(' ')[0]; // Returns icon only for clean display
-                });
-                label.textContent = `${checkboxes.length} Selected (${selectedValues.join(' ')})`;
-                label.className = "text-sm font-bold text-zinc-800";
+                label.textContent = `${checkboxes.length} value(s) selected`;
+                label.className = "text-sm font-bold text-zinc-900";
             }
         }
 
-        document.addEventListener('click', function(event) {
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+            document.getElementById(id).classList.add('modal-active');
+        }
+
+        document.addEventListener('click', function(e) {
             const menu = document.getElementById('likes_menu');
             const trigger = document.getElementById('likes_trigger');
-            if (menu && !menu.contains(event.target) && !trigger.contains(event.target)) {
+            if (menu && !menu.classList.contains('hidden') && !menu.contains(e.target) && !trigger.contains(e.target)) {
                 menu.classList.add('hidden');
             }
         });
 
-        // MODAL TOGGLE SYSTEM
-        function openModal(id) {
-            document.getElementById(id).classList.add('modal-active');
-        }
         function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
             document.getElementById(id).classList.remove('modal-active');
-        }
-
-        // PAGE NAVIGATION LOGIC
-        function showPage(pageId) {
-            document.getElementById('page-form').className = pageId === 'form' ? 'block' : 'hidden';
-            document.getElementById('page-map').className = pageId === 'map' ? 'block min-h-[70vh] w-full p-2 bg-zinc-900' : 'hidden';
-            document.getElementById('page-leader').className = pageId === 'leader' ? 'block min-h-[70vh] w-full p-2 bg-zinc-100' : 'hidden';
-
-            const btnForm = document.getElementById('btn-form');
-            const btnMap = document.getElementById('btn-map');
-            const btnLeader = document.getElementById('btn-leader');
-
-            const activeClass = "flex-1 inline-flex items-center justify-center gap-1 sm:gap-2 p-3 sm:p-4 font-black uppercase text-[9px] sm:text-[10px] tracking-tight sm:tracking-widest transition-all bg-white text-red-600 border-b-4 border-red-600 truncate";
-            const inactiveClass = "flex-1 inline-flex items-center justify-center gap-1 sm:gap-2 p-3 sm:p-4 font-black uppercase text-[9px] sm:text-[10px] tracking-tight sm:tracking-widest transition-all text-zinc-400 hover:text-zinc-600 bg-zinc-50 border-b-4 border-transparent truncate";
-
-            btnForm.className = pageId === 'form' ? activeClass : inactiveClass;
-            btnMap.className = pageId === 'map' ? activeClass : inactiveClass;
-            btnLeader.className = pageId === 'leader' ? activeClass : inactiveClass;
-        }
-
-        // FORM SUBMISSION PIPELINE
-        function handleFormSubmission(e) {
-            e.preventDefault();
-            const form = document.getElementById('treeForm');
-            const overlay = document.getElementById('overlay');
-            const unityId = document.getElementById('unity_id').value;
-
-            // Store unity ID in local storage for easy reuse
-            localStorage.setItem("ncsu_surveyor_id", unityId);
-
-            // Record timestamp
-            document.getElementById('timestamp').value = new Date().toISOString();
-
-            // Save last location to spatial history for troll catch checking
-            const coordsString = document.getElementById('coords').value;
-            if (coordsString) {
-                const parts = coordsString.split(',');
-                const lastTreeData = {
-                    lat: parseFloat(parts[0]),
-                    lon: parseFloat(parts[1]),
-                    timestamp: Date.now()
-                };
-                localStorage.setItem("last_surveyed_tree", JSON.stringify(lastTreeData));
-            }
-
-            overlay.style.display = 'flex';
-
-            const formData = new FormData(form);
-
-            fetch(GOOGLE_WEB_APP_URL, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                overlay.style.display = 'none';
-                alert('✅ Tree record successfully saved to NCSU Registry database!');
-                
-                // Reset form fields but keep unity ID & reset UI buttons
-                const currentUnityId = document.getElementById('unity_id').value;
-                form.reset();
-                document.getElementById('unity_id').value = currentUnityId;
-                
-                // Reset likes UI
-                updateLikesLabel();
-
-                // Reset Status Box UI
-                const statusBox = document.getElementById('status-box');
-                const msg = document.getElementById('gps-msg');
-                statusBox.className = "bg-amber-50 border-2 border-dashed border-amber-300 rounded-xl p-4 text-center transition-all duration-300";
-                msg.className = "text-xs font-black text-amber-700 uppercase tracking-wider flex items-center justify-center gap-2";
-                msg.innerHTML = "⚠️ Location Required Before Submitting";
-
-                document.getElementById('proximity-box').classList.add('hidden');
-
-                const submitBtn = document.getElementById('submit_btn');
-                submitBtn.disabled = true;
-                submitBtn.className = "w-full bg-zinc-300 text-zinc-500 cursor-not-allowed p-5 rounded-xl font-black uppercase tracking-widest transition-all text-sm shadow-inner";
-                submitBtn.textContent = "Lock Location Above to Enable Submit";
-
-                updateMath();
-            })
-            .catch(error => {
-                overlay.style.display = 'none';
-                alert('⚠️ Network transmission error. Please check your connection and try again.');
-            });
         }
     </script>
 </body>
